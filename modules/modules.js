@@ -20,3 +20,20 @@ export const hum = () => {
     humGuide.textContent = 'open';
   });
 };
+
+export const icon = () => {
+ //表示切替用DOM取得
+ const iconImg = document.querySelector('.icon-img');
+ const iconDes = document.querySelector('.icon-description');
+ //ボタンDOM取得
+ const button = {
+  text:document.querySelector('1');
+  color:document.querySelector('2');
+  small:document.querySelector('3');
+  big:document.querySelector('4');
+  rotate:document.querySelector('5');
+ }
+ 1.addEventLisner('click',()=>{
+  iconDes.innerText=;
+ });
+};
