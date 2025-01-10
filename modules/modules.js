@@ -61,26 +61,34 @@ export const icon = () => {
   });
   // big,smallボタンで動作するscale倍率の初期値
   let scaleIndex = 1;
-  // bigボタン　イベント処理のロジック
+  // rotateの初期値
+  let rotateIndex = 0;
+  // bigボタン イベント処理のロジック
   button.big.addEventListener('click', () => {
     if (scaleIndex < 1.6) {
       scaleIndex = scaleIndex + 0.2;
-      iconImg.style.transform = `scale(${scaleIndex})`;
+      updateTransform();
     } else {
       alert('ボタンが隠れちゃうよ');
     }
   });
-  // smallボタン　イベント処理のロジック
+  // smallボタン イベント処理のロジック
   button.small.addEventListener('click', () => {
     if (scaleIndex > 0.4) {
       scaleIndex = scaleIndex - 0.2;
-      iconImg.style.transform = `scale(${scaleIndex})`;
+      updateTransform();
     } else {
       alert('消えちゃうよ');
     }
   });
-  // rotateボタン　イベント処理のロジック
+  // rotateボタン イベント処理のロジック
   button.rotate.addEventListener('click', () => {
-    iconImg.style.transform = 'rotate(1080deg)';
+    rotateIndex += 1080; // 回転角度を累積
+    updateTransform();
   });
+
+  // transformの状態を更新する関数
+  function updateTransform() {
+    iconImg.style.transform = `scale(${scaleIndex}) rotate(${rotateIndex}deg)`;
+  }
 };
