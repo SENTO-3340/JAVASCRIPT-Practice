@@ -27,13 +27,23 @@ export const icon = () => {
  const iconDes = document.querySelector('.icon-description');
  //ボタンDOM取得
  const button = {
-  text:document.querySelector('1');
-  color:document.querySelector('2');
-  small:document.querySelector('3');
-  big:document.querySelector('4');
-  rotate:document.querySelector('5');
- }
- 1.addEventLisner('click',()=>{
-  iconDes.innerText=;
+  text:document.querySelector('.btn-text');
+  color:document.querySelector('.btn-color');
+  big:document.querySelector('.btn-big');
+  small:document.querySelector('.btn-small');
+  rotate:document.querySelector('.btn-rotate');
+ };
+ const iconText = [
+  "This is JavaScript icon!",
+  "Wow!!",
+  "Great!!!",
+  "Amazing!!!!",
+  "Oh my god!!!!!"
+ ];
+ let index = 0;
+　iconDes.innerText = iconText[0];
+  button.text.addEventLisner('click',()=>{
+  index = (index+1)%iconText.length;
+  iconDes.innerText = iconText[index];
  });
 };
