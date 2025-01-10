@@ -3,7 +3,7 @@ export const hum = () => {
   const nav = document.querySelector('.header-nav');
   const humButton = document.querySelector('.hum');
   const humGuide = document.querySelector('.hum-guide');
-  // ハンバーガーメニューの制御
+  // ハンバーガーメニューのロジック
   humButton.addEventListener('click', () => {
     humButton.classList.toggle('is-active');
     nav.classList.toggle('is-active');
@@ -13,13 +13,15 @@ export const hum = () => {
       humGuide.textContent = 'open';
     }
   });
-  // ナビのリンクをクリックしたらハンバーガーメニューを閉じる制御
+  // ナビのリンクをクリックしたらハンバーガーメニューを閉じるロジック
   nav.addEventListener('click', () => {
     nav.classList.remove('is-active');
     nav.classList.remove('is-active');
     humGuide.textContent = 'open';
   });
 };
+
+// －－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
 
 export const icon = () => {
  //表示切替用DOM取得
@@ -33,6 +35,7 @@ export const icon = () => {
   small:document.querySelector('.btn-small');
   rotate:document.querySelector('.btn-rotate');
  };
+ // icon-descriptionに表示するテキスト
  const iconText = [
   "This is JavaScript icon!",
   "Wow!!",
@@ -40,6 +43,7 @@ export const icon = () => {
   "Amazing!!!!",
   "Oh my god!!!!!"
  ];
+// textボタン　イベント処理のロジック
  let textIndex = 0;
 　iconDes.innerText = iconText[0];
   button.text.addEventLisner('click',()=>{
@@ -47,6 +51,7 @@ export const icon = () => {
   iconDes.innerText = iconText[textIndex];
  });
 };
+// icon-descriptionの文字色
  const iconColor = [
   "#121212",
   "gold",
@@ -54,6 +59,7 @@ export const icon = () => {
   "blue",
   "green"
  ];
+// colorボタン　イベント処理のロジック
  let colorIndex = 0;
 　iconDes.style.color = iconColor[0];
   button.color.addEventLisner('click',()=>{
@@ -61,21 +67,27 @@ export const icon = () => {
   iconDes.style.color = iconColor[colorIndex];
  });
 };
-  let scaleIndex = 1;
+// big,smallボタンで動作するscale倍率の初期値
+　let scaleIndex = 1;
+// bigボタン　イベント処理のロジック
   button.big.addEventLisner('click',()=>{
-   for(let toBig=scaleIndex;toBig<1.8;toBig+0.2){
-    iconImg.style.transform = scale(${toBig});
+   if(scaleIndex<1.8){
+    scaleIndex=scaleIndex+0.2;
+    iconImg.style.transform = scale(${scaleIndex});
    }eles{
-    alert("ムリですいね");
+    alert("もうムリですいね");
    }
   });
-   button.small.addEventLisner('click',()=>{
-   for(let toSmall=scaleIndex;toSmall>0.2;toSmall-0.2){
-    iconImg.style.transform = scale(${toSmall});
+// smallボタン　イベント処理のロジック
+  button.small.addEventLisner('click',()=>{
+   if(scaleIndex>0.2){
+    scaleIndex=scaleIndex-0.2;
+    iconImg.style.transform = scale(${scaleIndex});
    }eles{
-    alert("消えちゃいまっせ");
+    alert("もうムリですいね");
    }
   });
+// rotateボタン　イベント処理のロジック
   button.rotate.addEventLisner('click',()=>{
     iconImg.style.transform = rotate(1080deg);
   });
