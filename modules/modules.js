@@ -74,7 +74,7 @@ export const icon = () => {
    if(scaleIndex<1.8){
     scaleIndex=scaleIndex+0.2;
     iconImg.style.transform = scale(${scaleIndex});
-   }eles{
+   }else{
     alert("もうムリですいね");
    }
   });
@@ -83,7 +83,7 @@ export const icon = () => {
    if(scaleIndex>0.2){
     scaleIndex=scaleIndex-0.2;
     iconImg.style.transform = scale(${scaleIndex});
-   }eles{
+   }else{
     alert("もうムリですいね");
    }
   });
