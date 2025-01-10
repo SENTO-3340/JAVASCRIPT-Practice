@@ -40,10 +40,43 @@ export const icon = () => {
   "Amazing!!!!",
   "Oh my god!!!!!"
  ];
- let index = 0;
+ let textIndex = 0;
 　iconDes.innerText = iconText[0];
   button.text.addEventLisner('click',()=>{
-  index = (index+1)%iconText.length;
-  iconDes.innerText = iconText[index];
+  textIndex = (textIndex+1)%iconText.length;
+  iconDes.innerText = iconText[textIndex];
  });
+};
+ const iconColor = [
+  "#121212",
+  "gold",
+  "red",
+  "blue",
+  "green"
+ ];
+ let colorIndex = 0;
+　iconDes.style.color = iconColor[0];
+  button.color.addEventLisner('click',()=>{
+  colorIndex = (colorIndex+1)%iconColor.length;
+  iconDes.style.color = iconColor[colorIndex];
+ });
+};
+  let scaleIndex = 1;
+  button.big.addEventLisner('click',()=>{
+   for(let toBig=scaleIndex;toBig<1.8;toBig+0.2){
+    iconImg.style.transform = scale(${toBig});
+   }eles{
+    alert("ムリですいね");
+   }
+  });
+   button.small.addEventLisner('click',()=>{
+   for(let toSmall=scaleIndex;toSmall>0.2;toSmall-0.2){
+    iconImg.style.transform = scale(${toSmall});
+   }eles{
+    alert("消えちゃいまっせ");
+   }
+  });
+  button.rotate.addEventLisner('click',()=>{
+    iconImg.style.transform = rotate(1080deg);
+  });
 };
