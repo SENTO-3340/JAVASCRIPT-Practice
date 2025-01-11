@@ -66,6 +66,7 @@ html {
   background-color: gold;
   /* ーーーーナビ初期値ーーーー */
   transform: translateY(-120px);
+  opacity: 0;
   /* ーーーーーーーーーーーーー */
   transition: 0.5s;
 }
@@ -91,6 +92,7 @@ html {
 }
 .header-nav.is-active {
   transform: translateY(80px);
+  opacity: 100;
 }
 /* ーーーーーmainーーーーー */
 /* ーーーーREAD MEーーーー */
@@ -151,4 +153,86 @@ html {
 }
 .button button:hover{
   box-shadow: none;
+}
+/* ーーーーSCROLLーーーー */
+.scroll-container{
+  width: 100vw;
+  height: 100vh;
+}
+.scroll-headline{
+  text-align: center;
+  font-size: 50px;
+  padding-top: 100px;
+}
+.flicker{
+  position: relative;
+}
+.flicker span{
+  position: absolute;
+  width: 50px;
+  height: 3px;
+  background-color: #121212;
+}
+.flicker span:nth-of-type(1){
+  left: 50%;
+  transform: translate(-6px,120px) rotate(-40deg);
+  animation: flicker 1.5s infinite;
+}
+.flicker span:nth-of-type(2){
+  left: 50%;
+  transform: translate(-44px,120px) rotate(40deg);
+  animation: flicker 1.5s infinite
+}
+.flicker span:nth-of-type(3){
+  left: 50%;
+  transform: translate(-6px,170px) rotate(-40deg);
+  animation: flicker 1.5s infinite;
+  animation-delay: 0.2s
+}
+.flicker span:nth-of-type(4){
+  left: 50%;
+  transform: translate(-44px,170px) rotate(40deg);
+  animation: flicker 1.5s infinite;
+  animation-delay: 0.2s
+}
+.flicker span:nth-of-type(5){
+  left: 50%;
+  transform: translate(-6px,220px) rotate(-40deg);
+  animation: flicker 1.5s infinite;
+  animation-delay: 0.4s;
+}
+.flicker span:nth-of-type(6){
+  left: 50%;
+  transform: translate(-44px,220px) rotate(40deg);
+  animation: flicker 1.5s infinite;
+  animation-delay: 0.4s;
+}
+@keyframes flicker{
+  0%{
+    opacity: 0;
+  }
+  50%{
+    opacity: 100;
+  }
+  100%{
+    opacity: 0;
+  }
+}
+.blackout{
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  top: 0;
+  left: 0;
+  z-index: 30;
+  opacity: 0;
+}
+.background-video{
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 40;
+  opacity: 0;
+  pointer-events: none;
 }

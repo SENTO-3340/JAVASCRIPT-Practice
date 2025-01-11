@@ -1,51 +1,70 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>THE JAVASCRIPT</title>
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <header>
-        <div class="header-inner">
-            <h1 class="header-logo"><a href="#">THE JAVASCRIPT</a></h1>
-            <button class="hum">
-              <span class="hum-line"></span>
-              <span class="hum-line"></span>
-              <span class="hum-line"></span>
-              <span class="hum-guide">open</span>
-            </button>
-          </div>
-          <div class="header-nav">
-            <a class="nav-menu" href="#read-me">READ ME</a>
-            <a class="nav-menu" href="#the-icon">THE ICON</a>
-            <a class="nav-menu" href="#">menu3</a>
-          </div>
+      <div class="header-inner">
+        <h1 class="header-logo"><a href="#">THE JAVASCRIPT</a></h1>
+        <button class="hum">
+          <span class="hum-line"></span>
+          <span class="hum-line"></span>
+          <span class="hum-line"></span>
+          <span class="hum-guide">open</span>
+        </button>
+      </div>
+      <div class="header-nav">
+        <a class="nav-menu" href="#read-me">READ ME</a>
+        <a class="nav-menu" href="#the-icon">THE ICON</a>
+        <a class="nav-menu" href="#the-scroll">THE SCROLL</a>
+      </div>
     </header>
     <main>
       <section id="read-me">
         <h2 class="rm-headline">READ ME</h2>
         <p class="rm-description">
-          このサイトはJavaScriptを”作りながら学ぶ”ために作成したサイトです。<br>
-          JavaScriptの機能を使うためのサイト構築をしており各機能はES Modulesを用いて分割しています。<br>
+          このサイトはJavaScriptを”作りながら学ぶ”ために作成したサイトです。<br />
+          JavaScriptの機能を使うためのサイト構築をしており各機能はES
+          Modulesを用いて分割しています。<br />
           サイト内にちりばめたJSの機能を体感して楽しんでください!
         </p>
       </section>
       <section id="the-icon">
         <h2 class="icon-headline">THE ICON</h2>
-        <img class="icon-img" src="./public/icons8-javascript-512.png" alt="">
+        <img class="icon-img" src="./public/icons8-javascript-480.png" alt="" />
         <p class="icon-description"></p>
         <div class="button">
-          <button class = "btn-text">Text!</button>
-          <button class = "btn-color">Color!</button>
-          <button class = "btn-big">Big!</button>
-          <button class = "btn-small">Small!</button>
-          <button class = "btn-rotate">Rotate!</button>
+          <button class="btn-text">Text!</button>
+          <button class="btn-color">Color!</button>
+          <button class="btn-big">Big!</button>
+          <button class="btn-small">Small!</button>
+          <button class="btn-rotate">Rotate!</button>
         </div>
       </section>
+      <section id="the-scroll">
+        <div class="scroll-container">
+          <h2 class="scroll-headline">THE SCROLL</h2>
+          <div class="flicker">
+            <span></span><span></span> <span></span><span></span> <span></span
+            ><span></span>
+          </div>
+        </div>
+        <div class="blackout"></div>
+        <video
+          class="background-video"
+          src="./public/47802-451812879_small.mp4"
+          autoplay
+          muted
+          playsinline
+          loop
+        ></video>
+      </section>
     </main>
-    <script type="module" src="main.js"></script>    
-</body>
+    <script type="module" src="main.js"></script>
+  </body>
 </html>

@@ -46,7 +46,7 @@ export const icon = () => {
   // textボタン　イベント処理のロジック
   let textIndex = 0;
   iconDes.innerText = iconText[0];
-  button.text.addEventListener('click', ()=> {
+  button.text.addEventListener('click', () => {
     textIndex = (textIndex + 1) % iconText.length;
     iconDes.innerText = iconText[textIndex];
   });
@@ -65,7 +65,7 @@ export const icon = () => {
   let rotateIndex = 0;
   // bigボタン イベント処理のロジック
   button.big.addEventListener('click', () => {
-    if (scaleIndex < 1.6) {
+    if (scaleIndex < 1.5) {
       scaleIndex = scaleIndex + 0.2;
       updateTransform();
     } else {
@@ -74,7 +74,7 @@ export const icon = () => {
   });
   // smallボタン イベント処理のロジック
   button.small.addEventListener('click', () => {
-    if (scaleIndex > 0.4) {
+    if (scaleIndex > 0.5) {
       scaleIndex = scaleIndex - 0.2;
       updateTransform();
     } else {
@@ -83,7 +83,7 @@ export const icon = () => {
   });
   // rotateボタン イベント処理のロジック
   button.rotate.addEventListener('click', () => {
-    rotateIndex += 120; // 回転角度を累積
+    rotateIndex += 90; // 回転角度を累積
     updateTransform();
   });
 
@@ -91,4 +91,15 @@ export const icon = () => {
   function updateTransform() {
     iconImg.style.transform = `scale(${scaleIndex}) rotate(${rotateIndex}deg)`;
   }
+};
+// ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+
+export const scroll = () => {
+  const windowHeight = window.innerHeight;
+  const scrollContainer=document.querySelector('.scroll-container');
+  const containerHeight=scrollContainer.offsetHeight;
+  const containerTop=scrollContainer.offsetTop;
+  scrollContainer.addEventListener(('scroll'),()=>{
+    const scrollTop=window.scrollY;
+  });
 };
