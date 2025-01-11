@@ -83,7 +83,7 @@ export const icon = () => {
   });
   // rotateボタン イベント処理のロジック
   button.rotate.addEventListener('click', () => {
-    rotateIndex += 1080; // 回転角度を累積
+    rotateIndex += 120; // 回転角度を累積
     updateTransform();
   });
 
