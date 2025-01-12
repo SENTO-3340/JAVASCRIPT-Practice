@@ -1,0 +1,13 @@
+・scrollのtextが入るタイミング早める
+・scrollをリファクタリング
+・scrollをintersectionOvserverを用いたコードも書く
+
+・carouselを無限ループの自動再生にする
+
+・applicationを追加してcoming soonとする
+
+・ログイン画面を実装
+
+・レスポンシブにする
+
+・コードを見直してデプロイ
