@@ -227,6 +227,7 @@ html {
   left: 0;
   z-index: 30;
   opacity: 0;
+  pointer-events: none;
 }
 .background-video{
   position: fixed;
@@ -235,4 +236,11 @@ html {
   z-index: 40;
   opacity: 0;
   pointer-events: none;
+  transition: 1s;
+}
+.blackout.visible{
+  opacity: 100;
+}
+.background-video.visible{
+  opacity: 100;
 }
