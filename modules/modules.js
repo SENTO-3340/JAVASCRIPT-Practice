@@ -96,10 +96,17 @@ export const icon = () => {
 
 export const scroll = () => {
   const windowHeight = window.innerHeight;
-  const scrollContainer=document.querySelector('.scroll-container');
-  const containerHeight=scrollContainer.offsetHeight;
-  const containerTop=scrollContainer.offsetTop;
-  scrollContainer.addEventListener(('scroll'),()=>{
+  const blackout=document.querySelector('.blackout');
+  const backVideo=document.querySelector('.background-video');
+  const containerTop=blackout.offsetTop;
+  window.addEventListener(('scroll'),()=>{
     const scrollTop=window.scrollY;
+    if(scrollTop>=containerTop){
+      blackout.classlist.add('visible');
+      backVideo.classlist.add('visible');
+    }else{
+      blackout.classlist.remove('visible');
+      backVideo.classlist.remove('visible');
+    }
   });
 };
