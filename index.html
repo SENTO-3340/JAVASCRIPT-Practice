@@ -10,7 +10,7 @@
   <body>
     <header>
       <div class="header-inner">
-        <h1 class="header-logo"><a href="#">THE JAVASCRIPT</a></h1>
+        <h1 class="header-logo"><a href="#">THE JavaScript</a></h1>
         <button class="hum">
           <span class="hum-line"></span>
           <span class="hum-line"></span>
@@ -22,6 +22,7 @@
         <a class="nav-menu" href="#read-me">READ ME</a>
         <a class="nav-menu" href="#the-icon">THE ICON</a>
         <a class="nav-menu" href="#the-scroll">THE SCROLL</a>
+        <a class="nav-menu" href="#the-carousel">THE CAROUSEL</a>
       </div>
     </header>
     <main>
@@ -36,7 +37,7 @@
       </section>
       <section id="the-icon">
         <h2 class="icon-headline">THE ICON</h2>
-        <img class="icon-img" src="./public/icons8-javascript-480.png" alt="" />
+        <img class="icon-img" src="./public/js.png" alt="" />
         <p class="icon-description"></p>
         <div class="button">
           <button class="btn-text">Text!</button>
@@ -54,7 +55,6 @@
             ><span></span>
           </div>
         </div>
-        <div class="blackout"></div>
         <video
           class="background-video"
           src="./public/47802-451812879_small.mp4"
@@ -63,8 +63,86 @@
           playsinline
           loop
         ></video>
+        <div class="text-space">
+          <div class="space"></div>
+          <div class="scroll-inner"><p class="inner-text one">For left</p></div>
+          <div class="scroll-inner">
+            <p class="inner-text two">For right</p>
+          </div>
+          <div class="scroll-inner">
+            <p class="inner-text three">Fade in</p>
+          </div>
+        </div>
+      </section>
+      <section id="the-carousel">
+        <h2 class="carousel-headline">THE CAROUSEL</h2>
+        <div class="carousel">
+          <div class="carousel-contents">
+            <a
+              class="carousel-content"
+              href="https://www.typescriptlang.org/"
+              target="blank"
+            >
+              <img src="./public/ts-logo-512.png" alt="" />
+              <h3 class="carousel-caption">Typescript</h3>
+              <p class="carousel-description">
+                Strongly typed programming language that builds on JavaScript.
+              </p>
+            </a>
+            <a
+              class="carousel-content"
+              href="https://ja.react.dev/"
+              target="blank"
+            >
+              <img src="./public/react-logo.svg" alt="" />
+              <h3 class="carousel-caption">React</h3>
+              <p class="carousel-description">
+                The library for web and native user interfaces.
+              </p>
+            </a>
+            <a
+              class="carousel-content"
+              href="https://ja.vuejs.org/"
+              target="blank"
+            >
+              <img src="./public/logo.png" alt="" />
+              <h3 class="carousel-caption">Vue</h3>
+              <p class="carousel-description">
+                An approachable, performant and versatile framework for building
+                web user interfaces.
+              </p>
+            </a>
+            <a class="carousel-content" href="https://nuxt.com/" target="blank">
+              <img src="./public/logo-green-black.png" alt="" />
+              <h3 class="carousel-caption">Nuxt.js</h3>
+              <p class="carousel-description">
+                Nuxt is an open source framework that makes web development
+                intuitive and powerful.<br />
+                Create performant and production-grade full-stack web apps and
+                websites with confidence.
+              </p>
+            </a>
+            <a
+              class="carousel-content"
+              href="https://nextjs.org/"
+              target="blank"
+            >
+              <img src="./public/nextjs-logotype-light-background.png" alt="" />
+              <h3 class="carousel-caption">Next.js</h3>
+              <p class="carousel-description">
+                Next.js enables you to create high-quality web applications with
+                the power of React components.
+              </p>
+            </a>
+          </div>
+          <button class="left-button">&lt;</button>
+          <button class="right-button">&gt;</button>
+        </div>
       </section>
     </main>
+    <footer>
+      <small>&copy;SENTO Become a developer</small>
+    </footer>
     <script type="module" src="main.js"></script>
   </body>
 </html>

@@ -21,7 +21,7 @@ export const hum = () => {
   });
 };
 
-// －－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
+// ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
 
 export const icon = () => {
   //表示切替用DOM取得
@@ -96,17 +96,66 @@ export const icon = () => {
 
 export const scroll = () => {
   const windowHeight = window.innerHeight;
-  const blackout=document.querySelector('.blackout');
-  const backVideo=document.querySelector('.background-video');
-  const containerTop=blackout.offsetTop;
-  window.addEventListener(('scroll'),()=>{
-    const scrollTop=window.scrollY;
-    if(scrollTop>=containerTop){
-      blackout.classlist.add('visible');
-      backVideo.classlist.add('visible');
-    }else{
-      blackout.classlist.remove('visible');
-      backVideo.classlist.remove('visible');
+  const theScroll = document.querySelector('#the-scroll');
+  const container = document.querySelector('.scroll-container');
+  const backVideo = document.querySelector('.background-video');
+  const textSpace = document.querySelector('.text-space');
+  const innerText = document.querySelectorAll('.inner-text');
+  const containerTop = container.offsetTop;
+  const containerHeight = container.offsetHeight;
+  const canvasTop = textSpace.offsetTop;
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const rect2 = theScroll.getBoundingClientRect();
+    const theScrollTop = rect2.bottom + scrollTop;
+    if (
+      scrollTop >= containerHeight + containerTop &&
+      scrollTop <= theScrollTop - 200
+    ) {
+      backVideo.classList.add('visible');
+    } else {
+      backVideo.classList.remove('visible');
+    }
+    if (scrollTop >= canvasTop && scrollTop <= theScrollTop - 200) {
+      textSpace.classList.add('visible');
+    } else {
+      textSpace.classList.remove('visible');
+    }
+    innerText.forEach((text) => {
+      const rect = text.getBoundingClientRect();
+      const innerTop = rect.top + window.scrollY;
+      if (scrollTop + windowHeight >= innerTop) {
+        text.classList.add('visible');
+      } else {
+        text.classList.remove('visible');
+      }
+    });
+  });
+};
+
+// ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+
+export const carousel = () => {
+  const contents = document.querySelector('.carousel-contents');
+  const content = document.querySelectorAll('.carousel-content');
+  const leftButton = document.querySelector('.left-button');
+  const rightButton = document.querySelector('.right-button');
+  const contentArray = Array.from(content);
+  const contentWidth = contentArray[0].getBoundingClientRect().width;
+  let currentIndex = 0;
+  function moveToCarousel(index) {
+    contents.style.transform = `translateX(-${index * contentWidth}px)`;
+  }
+  leftButton.addEventListener('click', () => {
+    if (currentIndex > 0) {
+      currentIndex--;
+      moveToCarousel(currentIndex);
+    }
+  });
+  rightButton.addEventListener('click', () => {
+    if (currentIndex < contentArray.length-1) {
+      currentIndex++;
+      moveToCarousel(currentIndex);
     }
   });
 };
