@@ -140,22 +140,49 @@ export const carousel = () => {
   const content = document.querySelectorAll('.carousel-content');
   const leftButton = document.querySelector('.left-button');
   const rightButton = document.querySelector('.right-button');
-  const contentArray = Array.from(content);
-  const contentWidth = contentArray[0].getBoundingClientRect().width;
-  let currentIndex = 0;
+  const contentWidth = content[0].getBoundingClientRect().width;
+  const totalCarousel = content.length;
+  const realCarousel = totalCarousel - 2;
+  let currentIndex = 1;
+
+  contents.style.transform = `translateX(-${currentIndex * contentWidth}px)`;
+
   function moveToCarousel(index) {
-    contents.style.transform = `translateX(-${index * contentWidth}px)`;
+    contents.style.transform = `translateX(-${index * 100}vw)`;
+    contents.style.transition = `1s`;
+
+    contents.addEventListener(
+      'transitionend',
+      () => {
+        if (index === 0) {
+          currentIndex = realCarousel;
+          contents.style.transform = `translateX(-${
+            currentIndex * 100
+          }vw)`;
+          contents.style.transition = `none`;
+        } else if ((index === totalCarousel - 1)) {
+          currentIndex = 1;
+          contents.style.transform = `translateX(-${
+            currentIndex * 100
+          }vw)`;
+          contents.style.transition = `none`;
+        }
+      },
+      { once: true }
+    );
   }
-  leftButton.addEventListener('click', () => {
-    if (currentIndex > 0) {
-      currentIndex--;
-      moveToCarousel(currentIndex);
-    }
-  });
-  rightButton.addEventListener('click', () => {
-    if (currentIndex < contentArray.length-1) {
-      currentIndex++;
-      moveToCarousel(currentIndex);
-    }
-  });
+
+  function prevCarousel() {
+    currentIndex--;
+    moveToCarousel(currentIndex);
+  }
+  function nextCarousel() {
+    currentIndex++;
+    moveToCarousel(currentIndex);
+  }
+
+  setInterval(nextCarousel,4000);
+
+  leftButton.addEventListener('click', prevCarousel);
+  rightButton.addEventListener('click', nextCarousel);
 };

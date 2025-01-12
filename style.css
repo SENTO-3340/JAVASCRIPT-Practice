@@ -288,13 +288,12 @@ html {
 }
 .carousel{
   position: relative;
-  width: 500vw;
+  width: max-content;
   overflow: hidden;
 }
 .carousel-contents{
   display: flex;
   margin-top: 30px;
-  transition: 0.5s;
 }
 .carousel-content{
   width: 100vw;
@@ -330,7 +329,7 @@ html {
   transition: 0.3s;
   position: absolute;
   top: 0;
-  right: 400vw;
+  right: 600vw;
 }
 .left-button:hover{
   background-color: #909090;
