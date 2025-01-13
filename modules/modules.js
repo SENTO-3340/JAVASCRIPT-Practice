@@ -15,7 +15,7 @@ export const hum = () => {
   });
   // ナビのリンクをクリックしたらハンバーガーメニューを閉じるロジック
   nav.addEventListener('click', () => {
-    nav.classList.remove('is-active');
+    humButton.classList.remove('is-active');
     nav.classList.remove('is-active');
     humGuide.textContent = 'open';
   });
@@ -95,36 +95,37 @@ export const icon = () => {
 // ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
 
 export const scroll = () => {
-  const windowHeight = window.innerHeight;
-  const theScroll = document.querySelector('#the-scroll');
-  const container = document.querySelector('.scroll-container');
-  const backVideo = document.querySelector('.background-video');
+  // 操作用DOM取得
   const textSpace = document.querySelector('.text-space');
+  const backVideo = document.querySelector('.background-video');
   const innerText = document.querySelectorAll('.inner-text');
-  const containerTop = container.offsetTop;
-  const containerHeight = container.offsetHeight;
-  const canvasTop = textSpace.offsetTop;
+
+  // 画面の高さ取得
+  const windowHeight = window.innerHeight;
+
   window.addEventListener('scroll', () => {
-    const scrollTop = window.scrollY;
-    const rect2 = theScroll.getBoundingClientRect();
-    const theScrollTop = rect2.bottom + scrollTop;
-    if (
-      scrollTop >= containerHeight + containerTop &&
-      scrollTop <= theScrollTop - 200
-    ) {
+    // text-space要素の上端と画面上端の距離および、要素の下端と画面上端の距離を取得
+    // 動的に取得するためイベントリスナー内で定数宣言
+    const textSpaceTop = textSpace.getBoundingClientRect().top;
+    const textSpaceBottom = textSpace.getBoundingClientRect().bottom;
+
+    //text-spaceとvideoをfade-inする区間を計算
+    const fadeoutTiming = 100; //fade-outを早める数値（増やす＝早める）
+    const fadeinSection = 0 >= textSpaceTop && textSpaceBottom >= fadeoutTiming;
+
+    // text-spaceとvideoをfade-inするロジック
+    if (fadeinSection) {
+      textSpace.classList.add('visible');
       backVideo.classList.add('visible');
     } else {
+      textSpace.classList.remove('visible');
       backVideo.classList.remove('visible');
     }
-    if (scrollTop >= canvasTop && scrollTop <= theScrollTop - 200) {
-      textSpace.classList.add('visible');
-    } else {
-      textSpace.classList.remove('visible');
-    }
+
+    // 全てinner-textを配列にして、各々が画面に入ったらクラスを追加するロジック
     innerText.forEach((text) => {
-      const rect = text.getBoundingClientRect();
-      const innerTop = rect.top + window.scrollY;
-      if (scrollTop + windowHeight >= innerTop) {
+      const textRect = text.getBoundingClientRect();
+      if (windowHeight >= textRect.top) {
         text.classList.add('visible');
       } else {
         text.classList.remove('visible');
@@ -136,10 +137,10 @@ export const scroll = () => {
 // ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
 
 export const carousel = () => {
-  const contents = document.querySelector('.carousel-contents');
-  const content = document.querySelectorAll('.carousel-content');
   const leftButton = document.querySelector('.left-button');
   const rightButton = document.querySelector('.right-button');
+  const contents = document.querySelector('.carousel-contents');
+  const content = document.querySelectorAll('.carousel-content');
   const contentWidth = content[0].getBoundingClientRect().width;
   const totalCarousel = content.length;
   const realCarousel = totalCarousel - 2;
@@ -148,24 +149,20 @@ export const carousel = () => {
   contents.style.transform = `translateX(-${currentIndex * contentWidth}px)`;
 
   function moveToCarousel(index) {
-    contents.style.transform = `translateX(-${index * 100}vw)`;
-    contents.style.transition = `1s`;
+    contents.style.transform = `translateX(-${index * contentWidth}px)`;
+    contents.style.transition = `4s`;
 
     contents.addEventListener(
       'transitionend',
       () => {
         if (index === 0) {
           currentIndex = realCarousel;
-          contents.style.transform = `translateX(-${
-            currentIndex * 100
-          }vw)`;
           contents.style.transition = `none`;
-        } else if ((index === totalCarousel - 1)) {
+          contents.style.transform = `translateX(-${currentIndex * contentWidth}px)`;
+        } else if (index === totalCarousel - 1) {
           currentIndex = 1;
-          contents.style.transform = `translateX(-${
-            currentIndex * 100
-          }vw)`;
           contents.style.transition = `none`;
+          contents.style.transform = `translateX(-${currentIndex * contentWidth}px)`;
         }
       },
       { once: true }
@@ -181,7 +178,7 @@ export const carousel = () => {
     moveToCarousel(currentIndex);
   }
 
-  setInterval(nextCarousel,5000);
+  setInterval(nextCarousel, 5000);
 
   leftButton.addEventListener('click', prevCarousel);
   rightButton.addEventListener('click', nextCarousel);

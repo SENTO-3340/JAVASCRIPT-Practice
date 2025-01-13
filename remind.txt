@@ -1,8 +1,7 @@
-・scrollのtextが入るタイミング早める
 ・scrollをリファクタリング
 ・scrollをintersectionOvserverを用いたコードも書く
 
-・carouselを無限ループの自動再生にする
+・carouselをクローン要素を使ってよりスムーズにする
 
 ・applicationを追加してcoming soonとする
 

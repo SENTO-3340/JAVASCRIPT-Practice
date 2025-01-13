@@ -156,7 +156,7 @@ html {
   box-shadow: none;
 }
 /* ーーーーSCROLLーーーー */
-.scroll-container {
+.scroll-caption {
   width: 100vw;
   height: 100vh;
 }
@@ -255,13 +255,13 @@ html {
   text-align: center;
   color: #30ff30;
   font-size: 50px;
-  transition: 2s;
+  transition: 1s;
 }
 .inner-text.one {
-  transform: translate(-100vw, 300px);
+  transform: translate(-60vw, 300px);
 }
 .inner-text.two {
-  transform: translate(100vw, 300px);
+  transform: translate(60vw, 300px);
 }
 .inner-text.three {
   transform: translateY(300px);
