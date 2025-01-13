@@ -181,7 +181,7 @@ export const carousel = () => {
     moveToCarousel(currentIndex);
   }
 
-  setInterval(nextCarousel,4000);
+  setInterval(nextCarousel,5000);
 
   leftButton.addEventListener('click', prevCarousel);
   rightButton.addEventListener('click', nextCarousel);
