@@ -137,20 +137,15 @@ export const scroll = () => {
 // ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
 
 export const carousel = () => {
-  const leftButton = document.querySelector('.left-button');
-  const rightButton = document.querySelector('.right-button');
   const contents = document.querySelector('.carousel-contents');
   const content = document.querySelectorAll('.carousel-content');
   const contentWidth = content[0].getBoundingClientRect().width;
   const totalCarousel = content.length;
   const realCarousel = totalCarousel - 2;
+  
   let currentIndex = 1;
 
   contents.style.transform = `translateX(-${currentIndex * contentWidth}px)`;
-
-  function moveToCarousel(index) {
-    contents.style.transform = `translateX(-${index * contentWidth}px)`;
-    contents.style.transition = `4s`;
 
     contents.addEventListener(
       'transitionend',
@@ -168,6 +163,15 @@ export const carousel = () => {
       { once: true }
     );
   }
+  
+  setInterval(nextCarousel, 5000);
+
+　const leftButton = document.querySelector('.left-button');
+　const rightButton = document.querySelector('.right-button');
+
+　function moveToCarousel(index) {
+    contents.style.transform = `translateX(-${index * contentWidth}px)`;
+    contents.style.transition = `4s`;
 
   function prevCarousel() {
     currentIndex--;
@@ -177,8 +181,6 @@ export const carousel = () => {
     currentIndex++;
     moveToCarousel(currentIndex);
   }
-
-  setInterval(nextCarousel, 5000);
 
   leftButton.addEventListener('click', prevCarousel);
   rightButton.addEventListener('click', nextCarousel);
