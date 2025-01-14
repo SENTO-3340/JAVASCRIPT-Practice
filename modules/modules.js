@@ -65,7 +65,7 @@ export const icon = () => {
   let rotateIndex = 0;
   // bigボタン イベント処理のロジック
   button.big.addEventListener('click', () => {
-    if (scaleIndex < 1.5) {
+    if (scaleIndex <= 1.4) {
       scaleIndex = scaleIndex + 0.2;
       updateTransform();
     } else {
@@ -74,7 +74,7 @@ export const icon = () => {
   });
   // smallボタン イベント処理のロジック
   button.small.addEventListener('click', () => {
-    if (scaleIndex > 0.5) {
+    if (scaleIndex >= 0.6) {
       scaleIndex = scaleIndex - 0.2;
       updateTransform();
     } else {
