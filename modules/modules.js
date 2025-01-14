@@ -147,6 +147,10 @@ export const carousel = () => {
 
   contents.style.transform = `translateX(-${currentIndex * contentWidth}px)`;
 
+　function moveToCarousel(index) {
+    contents.style.transform = `translateX(-${index * contentWidth}px)`;
+    contents.style.transition = `4s`;
+    
     contents.addEventListener(
       'transitionend',
       () => {
@@ -163,15 +167,10 @@ export const carousel = () => {
       { once: true }
     );
   }
-  
   setInterval(nextCarousel, 5000);
 
 　const leftButton = document.querySelector('.left-button');
 　const rightButton = document.querySelector('.right-button');
-
-　function moveToCarousel(index) {
-    contents.style.transform = `translateX(-${index * contentWidth}px)`;
-    contents.style.transition = `4s`;
 
   function prevCarousel() {
     currentIndex--;
