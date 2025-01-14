@@ -1,4 +1,4 @@
-・scrollをリファクタリング
+・機能ごとに関数にぶちこむ→機能を付け外ししやすくなる
 ・scrollをintersectionOvserverを用いたコードも書く
 
 ・carouselをクローン要素を使ってよりスムーズにする
