@@ -137,49 +137,72 @@ export const scroll = () => {
 // ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
 
 export const carousel = () => {
-  const leftButton = document.querySelector('.left-button');
-  const rightButton = document.querySelector('.right-button');
+  // 操作用DOM取得
   const contents = document.querySelector('.carousel-contents');
   const content = document.querySelectorAll('.carousel-content');
+
+  // スライドするアイテムの横幅を取得
   const contentWidth = content[0].getBoundingClientRect().width;
-  const totalCarousel = content.length;
-  const realCarousel = totalCarousel - 2;
+
+  //
+
+  const firstClone = content[0].cloneNode(true);
+  const lastClone = content[content.length - 1].cloneNode(true);
+
+  firstClone.id = 'firstClone';
+  lastClone.id = 'lastClone';
+
+  contents.appendChild(firstClone);
+  contents.insertBefore(lastClone, content[0]);
+
+  const realContent = content.length - 2;
+
   let currentIndex = 1;
+  let isTrunsitioning = false;
 
   contents.style.transform = `translateX(-${currentIndex * contentWidth}px)`;
 
-  function moveToCarousel(index) {
-    contents.style.transform = `translateX(-${index * contentWidth}px)`;
-    contents.style.transition = `4s`;
-
-    contents.addEventListener(
-      'transitionend',
-      () => {
-        if (index === 0) {
-          currentIndex = realCarousel;
-          contents.style.transition = `none`;
-          contents.style.transform = `translateX(-${currentIndex * contentWidth}px)`;
-        } else if (index === totalCarousel - 1) {
-          currentIndex = 1;
-          contents.style.transition = `none`;
-          contents.style.transform = `translateX(-${currentIndex * contentWidth}px)`;
-        }
-      },
-      { once: true }
-    );
+  function moveToCarousel() {
+    if (isTrunsitioning) return;
+    isTrunsitioning = true;
+    currentIndex++;
+    contents.style.transform = `translateX(-${currentIndex * contentWidth}px)`;
+    contents.style.transition = `2s`;
   }
+
+  contents.addEventListener(
+    'transitionend',
+    () => {
+      isTrunsitioning = false;
+      if (content[currentIndex].id === 'lastClone') {
+        currentIndex = realContent;
+        contents.style.transition = `none`;
+        contents.style.transform = `translateX(-${
+          currentIndex * contentWidth
+        }px)`;
+      } else if (content[currentIndex].id === 'firstClone') {
+        currentIndex = 1;
+        contents.style.transition = `none`;
+        contents.style.transform = `translateX(-${
+          currentIndex * contentWidth
+        }px)`;
+      }
+    }
+  );
 
   function prevCarousel() {
+    if (isTrunsitioning) return;
+    isTrunsitioning = true;
     currentIndex--;
-    moveToCarousel(currentIndex);
-  }
-  function nextCarousel() {
-    currentIndex++;
-    moveToCarousel(currentIndex);
+    contents.style.transform = `translateX(-${currentIndex * contentWidth}px)`;
+    contents.style.transition = `2s`;
   }
 
-  setInterval(nextCarousel, 5000);
+  setInterval(moveToCarousel, 5000);
+
+  const leftButton = document.querySelector('.left-button');
+  const rightButton = document.querySelector('.right-button');
 
   leftButton.addEventListener('click', prevCarousel);
-  rightButton.addEventListener('click', nextCarousel);
+  rightButton.addEventListener('click', moveToCarousel);
 };
