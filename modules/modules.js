@@ -3,22 +3,34 @@ export const hum = () => {
   const nav = document.querySelector('.header-nav');
   const humButton = document.querySelector('.hum');
   const humGuide = document.querySelector('.hum-guide');
-  // ハンバーガーメニューのロジック
-  humButton.addEventListener('click', () => {
+  
+  // メニューを開閉する関数
+  function menuToggle(){
     humButton.classList.toggle('is-active');
     nav.classList.toggle('is-active');
+  };
+  
+  //メニューボタンのテキストをtoggleする関数
+  function menuTextToggle(){
     if (humGuide.textContent === 'open') {
       humGuide.textContent = 'close';
     } else {
       humGuide.textContent = 'open';
     }
-  });
-  // ナビのリンクをクリックしたらハンバーガーメニューを閉じるロジック
-  nav.addEventListener('click', () => {
+  };
+  // メニューを閉じる関数
+  function menuClose(){
     humButton.classList.remove('is-active');
     nav.classList.remove('is-active');
     humGuide.textContent = 'open';
+  };
+  
+  humButton.addEventListener('click', () => {
+    menuToggle();
+    menuTextToggle();
   });
+  
+  nav.addEventListener('click', menuClose);
 };
 
 // ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
