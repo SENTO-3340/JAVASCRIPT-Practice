@@ -143,36 +143,47 @@ export const carousel = () => {
   // スライドするアイテムの横幅を取得
   const contentWidth = content[0].getBoundingClientRect().width;
 
-  //
-
+  //carousel-contentの最初と最後の要素のクローン生成
   const firstClone = content[0].cloneNode(true);
   const lastClone = content[content.length - 1].cloneNode(true);
 
+　//本物と見分けるためにクローンにidを付与
   firstClone.id = 'firstClone';
   lastClone.id = 'lastClone';
 
+　//各クローンをcarousel-contetsの両端に追加
   contents.appendChild(firstClone);
   contents.insertBefore(lastClone, content[0]);
 
+　//本物のcaronsel-contentのlengthを定数に代入
   const realContent = content.length - 2;
 
+　//carouselの初期位置を管理
   let currentIndex = 1;
-  let isTrunsitioning = false;
 
+　//carouselを上記で指定した初期位置へ移動
   contents.style.transform = `translateX(-${currentIndex * contentWidth}px)`;
 
+　//isTransitioningを定義し、moveToCarouselで
+　//returnが実行されないように、値でfalseを代入
+  let isTransitioning = false;
+
+　//カルーセルをleftへ動かす関数
+ //isTransitioning=trueであれば実行されない
   function moveToCarousel() {
-    if (isTrunsitioning) return;
-    isTrunsitioning = true;
+    if (isTransitioning) return;
+    isTrnsitioning = true;
     currentIndex++;
     contents.style.transform = `translateX(-${currentIndex * contentWidth}px)`;
     contents.style.transition = `2s`;
   }
 
   contents.addEventListener(
-    'transitionend',
+    'transitionend', 　//transitionが終わったタイミングで
     () => {
-      isTrunsitioning = false;
+      isTransitioning = false; //isTransitioningをfalse(動作可能)にする
+      
+      //現在値がクローン要素であればクローン元の要素へ移動する
       if (content[currentIndex].id === 'lastClone') {
         currentIndex = realContent;
         contents.style.transition = `none`;
@@ -190,10 +201,10 @@ export const carousel = () => {
   );
 
   function prevCarousel() {
-    if (isTrunsitioning) return;
-    isTrunsitioning = true;
+    if (isTransitioning) return;
+    isTransitioning = true;
     currentIndex--;
-    contents.style.transform = `translateX(-${currentIndex * contentWidth}px)`;
+    contents.style.transform = `translateX(${currentIndex * contentWidth}px)`;
     contents.style.transition = `2s`;
   }
 
