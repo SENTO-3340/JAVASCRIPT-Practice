@@ -147,62 +147,65 @@ export const carousel = () => {
   const firstClone = content[0].cloneNode(true);
   const lastClone = content[content.length - 1].cloneNode(true);
 
-　//本物と見分けるためにクローンにidを付与
-  firstClone.id = 'firstClone';
-  lastClone.id = 'lastClone';
+  //本物と見分けるためにクローンにidを付与
+  firstClone.id = 'first-clone';
+  lastClone.id = 'last-clone';
 
-　//各クローンをcarousel-contetsの両端に追加
+  //各クローンをcarousel-contetsの両端に追加
   contents.appendChild(firstClone);
   contents.insertBefore(lastClone, content[0]);
 
-　//本物のcaronsel-contentのlengthを定数に代入
-  const realContent = content.length - 2;
+  //本物のcaronsel-contentのlengthを定数に代入
+  const realContent = content.length;
 
-　//carouselの初期位置を管理
+  //carouselの初期位置を管理
   let currentIndex = 1;
 
-　//carouselを上記で指定した初期位置へ移動
+  //carouselを上記で指定した初期位置へ移動
   contents.style.transform = `translateX(-${currentIndex * contentWidth}px)`;
 
-　//isTransitioningを定義し、moveToCarouselで
-　//returnが実行されないように、値でfalseを代入
-　//このロジックにおいては
-　//trueでtransition中のため動作不可
-　//falseがtransition中でないため動作可能
+  //isTransitioningを定義
+  //moveToCarouselでreturnが実行されないように、値でfalseを代入
+  //このロジックにおいては
+  //trueでtransition中のため動作不可
+  //falseでtransition中でないため動作可能
   let isTransitioning = false;
 
-　//カルーセルを進める関数
+  //カルーセルを進める関数
   function moveToCarousel() {
-    if (isTransitioning) return;  //isTransitioning=trueであれば実行されない
-    isTrnsitioning = true;
+    if (isTransitioning) return; //isTransitioning=trueであれば実行されない
+    isTransitioning = true;
     currentIndex++;
     contents.style.transform = `translateX(-${currentIndex * contentWidth}px)`;
-    contents.style.transition = `2s`;
-  }
-  
-  //カルーセルを戻す関数
-  function prevCarousel() {
-    if (isTransitioning) return;  //isTransitioning=trueであれば実行されない
-    isTransitioning = true;
-    currentIndex--;
-    contents.style.transform = `translateX(${currentIndex * contentWidth}px)`;
-    contents.style.transition = `2s`;
+    contents.style.transition = `1.3s`;
   }
 
-　//カルーセルを無限ループさせるイベント操作
+  //カルーセルを戻す関数
+  function prevCarousel() {
+    if (isTransitioning) return; //isTransitioning=trueであれば実行されない
+    isTransitioning = true;
+    currentIndex--;
+    contents.style.transform = `translateX(-${currentIndex * contentWidth}px)`;
+    contents.style.transition = `1.3s`;
+  }
+  
+  //カルーセルを無限ループさせるイベント操作
   contents.addEventListener(
-    'transitionend', 　//transitionが終わったタイミングで
+    'transitionend', //transitionが終わったタイミングで
     () => {
       isTransitioning = false; //isTransitioningをfalse(動作可能)にする
-      
+
       //現在値がクローン要素であればクローン元の要素へ移動する
-      if (content[currentIndex].id === 'lastClone') {
+      if (contents.children[currentIndex].id === 'last-clone') {
+        //↑のデバック備忘録：content[currentIndex].idがエラーになった理由
+        // 最上記で行ったDOM取得は静的ノードなのでクローン反映されずidはundefindedとなる
+        // しかし、.childrenの場合は動的ノードであり最新のノードを取得するため動作した
         currentIndex = realContent;
         contents.style.transition = `none`;
         contents.style.transform = `translateX(-${
           currentIndex * contentWidth
         }px)`;
-      } else if (content[currentIndex].id === 'firstClone') {
+      } else if (contents.children[currentIndex].id === 'first-clone') {
         currentIndex = 1;
         contents.style.transition = `none`;
         contents.style.transform = `translateX(-${
@@ -212,14 +215,14 @@ export const carousel = () => {
     }
   );
 
-　//5秒ごとにmoveToCarouselを実行
+  //5秒ごとにmoveToCarouselを実行
   setInterval(moveToCarousel, 5000);
 
-　//カルーセル操作用ボタンを取得
+  //カルーセル操作用ボタンを取得
   const leftButton = document.querySelector('.left-button');
   const rightButton = document.querySelector('.right-button');
 
-　//ボタンが押されたとき、ボタンに応じてカルーセルを動作
+  //ボタンが押されたとき、ボタンに応じてカルーセルを動作
   leftButton.addEventListener('click', prevCarousel);
   rightButton.addEventListener('click', moveToCarousel);
 };

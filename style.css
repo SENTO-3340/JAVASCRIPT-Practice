@@ -62,7 +62,7 @@ html {
   top: 0;
   left: 0;
   width: 100%;
-  height: 280px;
+  height: 320px;
   background-color: gold;
   /* ーーーーナビ初期値ーーーー */
   transform: translateY(-120px);
@@ -338,6 +338,19 @@ html {
   background-color: #909090;
 }
 
+#the-application{
+  height: 100vh;
+}
+.application-headline{
+  font-size: 50px;
+  text-align: center;
+  padding-top: 100px;
+}
+.application-caption{
+  margin-top: 150px;
+  text-align: center;
+  font-size: 25px;
+}
 /* ーーーーfooterーーーー */
 footer{
   height: 100vh;
