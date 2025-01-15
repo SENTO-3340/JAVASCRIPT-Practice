@@ -166,18 +166,30 @@ export const carousel = () => {
 
 　//isTransitioningを定義し、moveToCarouselで
 　//returnが実行されないように、値でfalseを代入
+　//このロジックにおいては
+　//trueでtransition中のため動作不可
+　//falseがtransition中でないため動作可能
   let isTransitioning = false;
 
-　//カルーセルをleftへ動かす関数
- //isTransitioning=trueであれば実行されない
+　//カルーセルを進める関数
   function moveToCarousel() {
-    if (isTransitioning) return;
+    if (isTransitioning) return;  //isTransitioning=trueであれば実行されない
     isTrnsitioning = true;
     currentIndex++;
     contents.style.transform = `translateX(-${currentIndex * contentWidth}px)`;
     contents.style.transition = `2s`;
   }
+  
+  //カルーセルを戻す関数
+  function prevCarousel() {
+    if (isTransitioning) return;  //isTransitioning=trueであれば実行されない
+    isTransitioning = true;
+    currentIndex--;
+    contents.style.transform = `translateX(${currentIndex * contentWidth}px)`;
+    contents.style.transition = `2s`;
+  }
 
+　//カルーセルを無限ループさせるイベント操作
   contents.addEventListener(
     'transitionend', 　//transitionが終わったタイミングで
     () => {
@@ -200,19 +212,14 @@ export const carousel = () => {
     }
   );
 
-  function prevCarousel() {
-    if (isTransitioning) return;
-    isTransitioning = true;
-    currentIndex--;
-    contents.style.transform = `translateX(${currentIndex * contentWidth}px)`;
-    contents.style.transition = `2s`;
-  }
-
+　//5秒ごとにmoveToCarouselを実行
   setInterval(moveToCarousel, 5000);
 
+　//カルーセル操作用ボタンを取得
   const leftButton = document.querySelector('.left-button');
   const rightButton = document.querySelector('.right-button');
 
+　//ボタンが押されたとき、ボタンに応じてカルーセルを動作
   leftButton.addEventListener('click', prevCarousel);
   rightButton.addEventListener('click', moveToCarousel);
 };
